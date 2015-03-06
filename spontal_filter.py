@@ -5,15 +5,15 @@ import sys
 
 def main(argv):
 	
-	#import data
+    """import data"""
     tree = ET.parse(argv[1])
     root = tree.getroot()
 	
-	#loop to compare the start and end to
-	#the TOP and BOTTOM
+    """loop to compare the start and end to
+    the TOP and BOTTOM"""
     for POINT in root.findall('POINT'):
         
-		#give grand-childs a variable  
+        """give grand-childs a variable"""  
         top = float(POINT.find('TOP_HZ').text)
         bottom = float(POINT.find('BOTTOM_HZ').text)
         start = float(POINT.find('F0_START').text)
@@ -24,7 +24,7 @@ def main(argv):
         elif end > top or end < bottom:
             root.remove(POINT)
 	
-	#write the output to a different file		
+    """write the output to a different file"""		
     tree.write(argv[2])
 
 if __name__ == "__main__":
